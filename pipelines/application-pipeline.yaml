@@ -36,6 +36,12 @@ stages:
     #     command: login
     #     containerRegistry: sc-principal
 
+    # - task: DockerCompose@0
+    #   displayName: Container registry login
+    #   inputs:
+    #     containerregistrytype: Azure Container Registry
+    #     dockerRegistryEndpoint: Contoso
+
     - task: DockerCompose@0
       displayName: Build services
       inputs:
@@ -56,7 +62,7 @@ stages:
       displayName: Push services
       inputs:
         action: Push services
-        azureSubscriptionEndpoint: sc-principal
+        azureSubscriptionEndpoint: scacrforaks
         azureContainerRegistry: scacrforaks
         dockerComposeFile: docker-compose.yaml
         qualifyImageNames: true
