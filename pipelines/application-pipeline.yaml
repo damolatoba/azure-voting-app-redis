@@ -36,7 +36,7 @@ stages:
         action: Build services
         azureSubscriptionEndpoint: sc-principal
         azureContainerRegistry: scacrforaks
-        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
+        dockerComposeFile: docker-compose.yaml
         qualifyImageNames: true
 
     - task: PublishPipelineArtifact@1
