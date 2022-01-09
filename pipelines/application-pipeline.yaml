@@ -1,0 +1,49 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  - master
+  
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  displayName: Build and push image to ACR
+  jobs:
+  - job: BuildAndPush
+    displayName: Build and Push Image to Azure Container Registry
+    steps:
+    - task: PowerShell@2
+      displayName: Pipeline Authorization to Tenant
+      inputs:
+        targetType: 'inline'
+        script: |
+          az login --service-principal -u "baf0abd3-22d9-4172-bf7e-bad94ab33f60" -p "5IA~W5aXhsu~ZQCKHEo-lyzA-3y2rilUo~" --tenant "84cc859e-d165-4b0e-8b05-b47b775371e7"
+
+    - task: PowerShell@2
+      displayName: Pipeline authorization to Azure Container Registry
+      inputs:
+        targetType: 'inline'
+        script: |
+          az acr login -n scacrforaks
+
+    - task: DockerCompose@0
+      displayName: Build services
+      inputs:
+        action: Build services
+        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+        azureContainerRegistry: $(azureContainerRegistry)
+        dockerComposeFile: docker-compose.yml
+        projectName: $(Build.Repository.Name)
+        qualifyImageNames: true
+        additionalImageTags: $(Build.BuildId)
+
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Pipeline Artifact
+      inputs:
+        targetPath: '$(Pipeline.Workspace)'
+        artifact: 'manifests'
+        publishLocation: 'pipeline'
