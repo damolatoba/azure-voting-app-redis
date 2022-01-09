@@ -45,7 +45,7 @@ stages:
         action: Push services
         azureSubscriptionEndpoint: sc-principal
         azureContainerRegistry: scacrforaks
-        dockerComposeFile: docker-compose.yml
+        dockerComposeFile: docker-compose.yaml
         qualifyImageNames: true
 
     - task: PublishPipelineArtifact@1
