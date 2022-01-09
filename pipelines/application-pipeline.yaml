@@ -56,7 +56,7 @@ stages:
       displayName: Push image
       inputs:
         containerRegistry: dockerConnection
-        repository: "scacrforaks.azurecr.io/azure-vote-front:0.1"
+        repository: scacrforaks.azurecr.io/azure-vote-front
         command: push
         tags: |
           0.1
@@ -65,7 +65,7 @@ stages:
       displayName: Push image
       inputs:
         containerRegistry: dockerConnection
-        repository: "scacrforaks.azurecr.io/azure-vote-back:0.1"
+        repository: scacrforaks.azurecr.io/azure-vote-back
         command: push
         tags: |
           0.1
