@@ -41,8 +41,6 @@ stages:
 
     - task: DockerCompose@0
       displayName: Push services
-      dependsOn: Foo
-      condition: succeeded()
       inputs:
         action: Push services
         azureSubscriptionEndpoint: sc-principal
