@@ -16,12 +16,12 @@ stages:
   - job: BuildAndPush
     displayName: Build and Push Image to Azure Container Registry
     steps:
-    - task: PowerShell@2
-      displayName: Tenant Authorization
-      inputs:
-        targetType: 'inline'
-        script: |
-          az login --service-principal -u "baf0abd3-22d9-4172-bf7e-bad94ab33f60" -p "uR-KwKYcxt1BrU-rCHonrR8-p0xBi32lXk" --tenant "84cc859e-d165-4b0e-8b05-b47b775371e7"
+    # - task: PowerShell@2
+    #   displayName: Tenant Authorization
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       az login --service-principal -u "baf0abd3-22d9-4172-bf7e-bad94ab33f60" -p "uR-KwKYcxt1BrU-rCHonrR8-p0xBi32lXk" --tenant "84cc859e-d165-4b0e-8b05-b47b775371e7"
 
     # - task: PowerShell@2
     #   displayName: ACR Authorization
@@ -95,7 +95,7 @@ stages:
             inputs:
               artifactName: 'manifests'
               downloadPath: '$(System.ArtifactsDirectory)/manifests'
-
+              
           - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:
