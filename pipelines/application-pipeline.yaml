@@ -39,6 +39,15 @@ stages:
         dockerComposeFile: docker-compose.yaml
         qualifyImageNames: true
 
+    - task: DockerCompose@0
+      displayName: Push services
+      inputs:
+        action: Push services
+        azureSubscriptionEndpoint: sc-principal
+        azureContainerRegistry: scacrforaks
+        dockerComposeFile: docker-compose.yml
+        qualifyImageNames: true
+
     - task: PublishPipelineArtifact@1
       displayName: Publish Pipeline Artifact
       inputs:
