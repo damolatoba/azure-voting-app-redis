@@ -45,6 +45,20 @@ stages:
         dockerComposeFile: docker-compose.yaml
         qualifyImageNames: true
 
+    - task: Docker@2
+      displayName: Push image
+      inputs:
+        containerRegistry: dockerConnection
+        repository: scacrforaks.azurecr.io/azure-vote-front:0.1
+        command: push
+
+    - task: Docker@2
+      displayName: Push image
+      inputs:
+        containerRegistry: dockerConnection
+        repository: scacrforaks.azurecr.io/azure-vote-back:0.1
+        command: push
+
     # - task: PowerShell@2
     #   displayName: Docker Images
     #   inputs:
@@ -52,14 +66,14 @@ stages:
     #     script: |
     #       docker images
 
-    - task: DockerCompose@0
-      displayName: Push services
-      inputs:
-        action: Push services
-        azureSubscriptionEndpoint: sc-principal
-        azureContainerRegistry: scacrforaks
-        dockerComposeFile: docker-compose.yaml
-        qualifyImageNames: true
+    # - task: DockerCompose@0
+    #   displayName: Push services
+    #   inputs:
+    #     action: Push services
+    #     azureSubscriptionEndpoint: sc-principal
+    #     azureContainerRegistry: scacrforaks
+    #     dockerComposeFile: docker-compose.yaml
+    #     qualifyImageNames: true
 
     - task: PublishPipelineArtifact@1
       displayName: Publish Pipeline Artifact
