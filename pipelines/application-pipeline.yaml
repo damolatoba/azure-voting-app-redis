@@ -16,25 +16,6 @@ stages:
   - job: BuildAndPush
     displayName: Build and Push Image to Azure Container Registry
     steps:
-    # - task: PowerShell@2
-    #   displayName: Tenant Authorization
-    #   inputs:
-    #     targetType: 'inline'
-    #     script: |
-    #       az login --service-principal -u "baf0abd3-22d9-4172-bf7e-bad94ab33f60" -p "uR-KwKYcxt1BrU-rCHonrR8-p0xBi32lXk" --tenant "84cc859e-d165-4b0e-8b05-b47b775371e7"
-
-    # - task: PowerShell@2
-    #   displayName: ACR Authorization
-    #   inputs:
-    #     targetType: 'inline'
-    #     script: |
-    #       az acr login -n scacrforaks
-
-    # - task: Docker@2
-    #   displayName: Login to ACR
-    #   inputs:
-    #     command: login
-    #     containerRegistry: dockerConnection
 
     - task: DockerCompose@0
       displayName: Build services
@@ -116,13 +97,3 @@ stages:
               containers: |
                 scacrforaks.azurecr.io/azure-vote-front:0.1.1
                 scacrforaks.azurecr.io/azure-vote-back:0.1.1
-
-          - task: PowerShell@2
-            displayName: AKS cred, nodes and service info
-            inputs:
-              targetType: 'inline'
-              script: |
-                az aks get-credentials --resource-group sc-aks-rg --name sc-aks-cluster
-
-                kubectl get nodes
-                kubectl get service azure-vote-front
