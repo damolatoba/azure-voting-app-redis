@@ -34,12 +34,10 @@ stages:
       displayName: Build services
       inputs:
         action: Build services
-        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-        azureContainerRegistry: $(azureContainerRegistry)
+        azureSubscriptionEndpoint: sc-principal
+        azureContainerRegistry: scacrforaks
         dockerComposeFile: docker-compose.yml
-        projectName: $(Build.Repository.Name)
         qualifyImageNames: true
-        additionalImageTags: $(Build.BuildId)
 
     - task: PublishPipelineArtifact@1
       displayName: Publish Pipeline Artifact
