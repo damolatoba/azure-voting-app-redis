@@ -34,7 +34,7 @@ stages:
       displayName: Build services
       inputs:
         action: Build services
-        azureSubscriptionEndpoint: "baf0abd3-22d9-4172-bf7e-bad94ab33f60"
+        azureSubscriptionEndpoint: sc-principal
         azureContainerRegistry: scacrforaks
         dockerComposeFile: docker-compose.yml
         qualifyImageNames: true
