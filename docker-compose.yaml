@@ -2,7 +2,7 @@ version: '3'
 services:
   azure-vote-back:
     build: ./azure-vote
-    image: scacrforaks.azurecr.io/azure-vote-back:0.1
+    image: scacrforaks.azurecr.io/azure-vote-back:0.1.1
     container_name: azure-vote-back
     environment:
       ALLOW_EMPTY_PASSWORD: "yes"
@@ -11,7 +11,7 @@ services:
 
   azure-vote-front:
     build: ./azure-vote
-    image: scacrforaks.azurecr.io/azure-vote-front:0.1
+    image: scacrforaks.azurecr.io/azure-vote-front:0.1.1
     container_name: azure-vote-front
     environment:
       REDIS: azure-vote-back
