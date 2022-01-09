@@ -41,6 +41,7 @@ stages:
       inputs:
         containerregistrytype: Azure Container Registry
         dockerRegistryEndpoint: dockerConnection
+        dockerComposeFile: docker-compose.yaml
 
     - task: DockerCompose@0
       displayName: Build services
