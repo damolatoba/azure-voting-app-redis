@@ -49,14 +49,14 @@ stages:
       displayName: Push image
       inputs:
         containerRegistry: dockerConnection
-        repository: scacrforaks.azurecr.io/azure-vote-front
+        repository: "scacrforaks.azurecr.io/azure-vote-front:0.1"
         command: push
 
     - task: Docker@2
       displayName: Push image
       inputs:
         containerRegistry: dockerConnection
-        repository: scacrforaks.azurecr.io/azure-vote-back
+        repository: "scacrforaks.azurecr.io/azure-vote-back:0.1"
         command: push
 
     # - task: PowerShell@2
