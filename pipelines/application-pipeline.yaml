@@ -62,7 +62,7 @@ stages:
       displayName: Push services
       inputs:
         action: Push services
-        azureSubscriptionEndpoint: scacrforaks
+        azureSubscriptionEndpoint: dockerConnection
         azureContainerRegistry: scacrforaks
         dockerComposeFile: docker-compose.yaml
         qualifyImageNames: true
