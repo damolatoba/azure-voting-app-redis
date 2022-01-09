@@ -58,6 +58,8 @@ stages:
         containerRegistry: dockerConnection
         repository: "scacrforaks.azurecr.io/azure-vote-front:0.1"
         command: push
+        tags: |
+          0.1
 
     - task: Docker@2
       displayName: Push image
@@ -65,6 +67,8 @@ stages:
         containerRegistry: dockerConnection
         repository: "scacrforaks.azurecr.io/azure-vote-back:0.1"
         command: push
+        tags: |
+          0.1
 
     # - task: DockerCompose@0
     #   displayName: Push services
