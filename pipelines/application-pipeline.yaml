@@ -45,6 +45,13 @@ stages:
         dockerComposeFile: docker-compose.yaml
         qualifyImageNames: true
 
+    - task: PowerShell@2
+      displayName: Docker Images
+      inputs:
+        targetType: 'inline'
+        script: |
+          docker images
+
     - task: Docker@2
       displayName: Push image
       inputs:
@@ -58,13 +65,6 @@ stages:
         containerRegistry: dockerConnection
         repository: "scacrforaks.azurecr.io/azure-vote-back:0.1"
         command: push
-
-    - task: PowerShell@2
-      displayName: Docker Images
-      inputs:
-        targetType: 'inline'
-        script: |
-          docker images
 
     # - task: DockerCompose@0
     #   displayName: Push services
