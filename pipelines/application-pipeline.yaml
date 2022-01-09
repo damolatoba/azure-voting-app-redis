@@ -63,6 +63,8 @@ stages:
       inputs:
         action: Push services
         azureSubscriptionEndpoint: sc-principal
+        containerregistrytype: Azure Container Registry
+        dockerRegistryEndpoint: dockerConnection
         azureContainerRegistry: scacrforaks
         dockerComposeFile: docker-compose.yaml
         qualifyImageNames: true
