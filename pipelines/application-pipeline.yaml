@@ -76,3 +76,46 @@ stages:
         targetPath: '$(Pipeline.Workspace)'
         artifact: 'manifests'
         publishLocation: 'pipeline'
+
+- stage: Deploy
+  displayName: Deploy to Dev
+  dependsOn: Build
+  variables:
+    acrsecret: '4AFox3n5RxQ+eaqpDmcj6gHlz3eQc1GT'
+    acrdevurl: 'scacrforaks.azurecr.io'
+    replicaNo: 1
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy to AKS
+    environment: '$(environment)'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: PowerShell@2
+            displayName: Pipeline Authorization to Tenant
+            inputs:
+              targetType: 'inline'
+              script: |
+                az login --service-principal -u "baf0abd3-22d9-4172-bf7e-bad94ab33f60" -p "uR-KwKYcxt1BrU-rCHonrR8-p0xBi32lXk" --tenant "84cc859e-d165-4b0e-8b05-b47b775371e7"
+          - task: DownloadPipelineArtifact@2
+            displayName: Download Build Pipeline Artifact
+            inputs:
+              buildType: 'current'
+              artifactName: 'manifests'
+              targetPath: '$(Pipeline.Workspace)/manifests'
+          - task: KubernetesManifest@0
+            displayName: Create ACR Secret
+            inputs:
+              action: 'createSecret'
+              namespace: '$(namespace)'
+              secretType: 'dockerRegistry'
+              secretName: '$(acrsecret)'
+          - task: KubernetesManifest@0
+            displayName: Deploy App to AKS
+            inputs:
+              action: 'deploy'
+              namespace: '$(namespace)'
+              manifests: |
+                $(Pipeline.Workspace)/manifests/s/azure-vote-all-in-one-redis.yaml
+              containers: '$(acrdevurl)/$(imageRepo):0.1.1'
