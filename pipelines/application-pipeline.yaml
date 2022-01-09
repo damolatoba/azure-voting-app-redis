@@ -95,7 +95,7 @@ stages:
             inputs:
               artifactName: 'manifests'
               downloadPath: '$(System.ArtifactsDirectory)/manifests'
-              
+
           - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:
@@ -110,9 +110,9 @@ stages:
               action: deploy
               namespace: dev-environment
               manifests: |
-                $(System.ArtifactsDirectory)/manifests/deployment.yml
-                $(System.ArtifactsDirectory)/manifests/service.yml
+                $(System.ArtifactsDirectory)/manifests/s/azure-vote-all-in-one-redis.yaml
               imagePullSecrets: |
                 imgpsecret
               containers: |
-                $(containerRegistry)/$(imageRepository):$(tag)
+                scacrforaks.azurecr.io/azure-vote-front:0.1.1
+                scacrforaks.azurecr.io/azure-vote-back:0.1.1
