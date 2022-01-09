@@ -87,7 +87,7 @@ stages:
   jobs:
   - deployment: Deploy
     displayName: Deploy to AKS
-    environment: '$(environment)'
+    # environment: '$(environment)'
     strategy:
       runOnce:
         deploy:
