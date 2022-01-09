@@ -116,3 +116,13 @@ stages:
               containers: |
                 scacrforaks.azurecr.io/azure-vote-front:0.1.1
                 scacrforaks.azurecr.io/azure-vote-back:0.1.1
+
+          - task: PowerShell@2
+            displayName: AKS cred, nodes and service info
+            inputs:
+              targetType: 'inline'
+              script: |
+                az aks get-credentials --resource-group sc-aks-rg --name sc-aks-cluster
+
+                kubectl get nodes
+                kubectl get service azure-vote-front
