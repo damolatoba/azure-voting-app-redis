@@ -21,7 +21,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          az login --service-principal -u "baf0abd3-22d9-4172-bf7e-bad94ab33f60" -p "5IA~W5aXhsu~ZQCKHEo-lyzA-3y2rilUo~" --tenant "84cc859e-d165-4b0e-8b05-b47b775371e7"
+          az login --service-principal -u "baf0abd3-22d9-4172-bf7e-bad94ab33f60" -p "uR-KwKYcxt1BrU-rCHonrR8-p0xBi32lXk" --tenant "84cc859e-d165-4b0e-8b05-b47b775371e7"
 
     - task: PowerShell@2
       displayName: Pipeline authorization to Azure Container Registry
