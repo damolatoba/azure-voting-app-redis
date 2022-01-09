@@ -45,12 +45,12 @@ stages:
         dockerComposeFile: docker-compose.yaml
         qualifyImageNames: true
 
-    - task: PowerShell@2
-      displayName: Docker Images
-      inputs:
-        targetType: 'inline'
-        script: |
-          docker images
+    # - task: PowerShell@2
+    #   displayName: Docker Images
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       docker images
 
     - task: DockerCompose@0
       displayName: Push services
