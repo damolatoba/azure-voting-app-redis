@@ -16,7 +16,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: azure-vote-back
-        image: scacrforaks.azurecr.io/azure-vote-back:v1
+        image: scacrforaks.azurecr.io/azure-vote-back:0.1.1
         env:
         - name: ALLOW_EMPTY_PASSWORD
           value: "yes"
@@ -57,7 +57,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: azure-vote-front
-        image: scacrforaks.azurecr.io/azure-vote-front:v1
+        image: scacrforaks.azurecr.io/azure-vote-front:0.1
         ports:
         - containerPort: 80
         resources:

@@ -95,5 +95,5 @@ stages:
               imagePullSecrets: |
                 imgpsecret
               containers: |
-                scacrforaks.azurecr.io/azure-vote-front:0.1.1
-                scacrforaks.azurecr.io/azure-vote-back:0.1.1
+                scacrforaks.azurecr.io/azure-vote-front:0.1.2
+                scacrforaks.azurecr.io/azure-vote-back:0.1.2
